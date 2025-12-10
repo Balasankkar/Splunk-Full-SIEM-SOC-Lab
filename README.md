@@ -67,5 +67,4 @@ As a security engineer, I was tasked with:
 
 ---
 
-## 🧾 Project Structure
 
