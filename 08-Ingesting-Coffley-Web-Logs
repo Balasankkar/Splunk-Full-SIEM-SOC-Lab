@@ -1,1 +1,198 @@
+# 🧩 Lab 4 — Splunk Forwarder Configuration and Log Ingestion
+
+In this lab, I configured the **Splunk Universal Forwarder** on a Windows machine, connected it to the **Splunk Enterprise Indexer**, and set up log ingestion for both **Windows Event Logs** and **Coffely IIS Web Logs**.  
+This establishes the foundation for collecting endpoint and web application logs for centralized security monitoring.
+
+---
+
+## ⚙️ Step 1: Install and Configure the Splunk Universal Forwarder
+
+1. Downloaded the **Splunk Universal Forwarder (Windows 64-bit)** installer from the official Splunk website.  
+2. During installation:
+   - Selected **On-premises Splunk Enterprise instance**.  
+   - Configured the **Receiving Indexer**:  
+     ```
+     Host: 127.0.0.1
+     Port: 9997
+     ```
+   - Configured the **Deployment Server**:  
+     ```
+     Host: 127.0.0.1
+     Port: 8089
+     ```
+   - Created admin credentials:
+     ```
+     Username: Analyst
+     Password: ********
+     ```
+
+3. Installation completed successfully, confirming the forwarder service was running on the Windows host.
+
+![Universal Forwarder Installation Complete](../images/siemlab/01-forwarder-complete.png)
+
+---
+
+## ⚙️ Step 2: Configure Splunk to Receive Forwarded Data
+
+On the Splunk Enterprise server:
+
+1. Navigated to:
+Settings → Forwarding and Receiving → Configure Receiving
+
+css
+Copy code
+2. Added a **Receiving Port (9997)** to accept incoming data from the forwarder.
+
+![Receiving Port Setup](../images/siemlab/02-forwarder-port.png)
+
+3. Verified connection under:
+Settings → Forwarder Management
+
+yaml
+Copy code
+The **Windows host (coffelylab)** appeared under **Clients**, confirming a successful handshake.
+
+![Forwarder Management Confirmation](../images/siemlab/03-forwarder-connected.png)
+
+---
+
+## ⚙️ Step 3: Ingest Windows Event Logs
+
+With the forwarder active, I configured Splunk to collect **Windows Event Logs**.
+
+1. Navigated to:
+Settings → Add Data → Forward
+
+markdown
+Copy code
+and selected **Forward data from a Splunk forwarder**.
+
+![Add Data → Forward Option](../images/siemlab/04-add-data-forward.png)
+
+2. Selected the host **WINDOWS coffelylab** and created a new **Server Class** named:
+coffely_lab
+
+markdown
+Copy code
+
+![Select Forwarder Host](../images/siemlab/05-forwarder-select.png)
+
+3. Chose **Local Event Logs** as the source type:
+- Application  
+- Security  
+- System  
+
+![Select Local Event Logs](../images/siemlab/06-local-eventlogs.png)
+
+4. Created a new **index** named:
+win_logs
+
+markdown
+Copy code
+
+![Create win_logs Index](../images/siemlab/07-create-index.png)
+
+5. Reviewed and confirmed configuration:
+Server Class Name: coffely_lab
+Event Logs: Application, Security, System
+Index: win_logs
+
+bash
+Copy code
+
+![Review Windows Event Log Settings](../images/siemlab/08-review.png)
+
+6. Verified successful ingestion using the query:
+```spl
+source="WinEventLog:*" index="win_logs"
+Logs from the Windows endpoint appeared, including authentication, system, and application events.
+
+
+⚙️ Step 4: Ingest Coffely Web Logs (IIS)
+The same Windows host also ran the Coffely web application, accessible at:
+
+arduino
+Copy code
+http://coffely.thm
+This local site simulates an e-commerce platform used to generate web traffic for log collection.
+
+
+Step 4.1 — Add Data from Forwarder
+Navigated to:
+
+powershell
+Copy code
+Settings → Add Data → Forward
+and selected Forward data from a Splunk forwarder.
+
+
+Selected WINDOWS coffelylab as the host and proceeded.
+
+
+Step 4.2 — Configure Source Path
+Selected Files & Directories as the source input method.
+
+Specified the IIS log path:
+
+makefile
+Copy code
+C:\inetpub\logs\LogFiles\W3SVC2
+
+Step 4.3 — Set Source Type and Index
+Under Input Settings, selected:
+
+css
+Copy code
+Source Type: iis
+This automatically applies Microsoft IIS log parsing during ingestion.
+
+Created a new index for web data:
+
+nginx
+Copy code
+web_logs
+
+
+Step 4.4 — Verify Web Log Ingestion
+After setup, I accessed the Coffely site to generate logs (navigating through menus and placing mock orders).
+
+Within 4–5 minutes, logs began populating in Splunk.
+
+Search query:
+
+spl
+Copy code
+index="web_logs" sourcetype="iis"
+Results included HTTP requests, response codes, timestamps, and client IPs — confirming successful ingestion.
+
+
+✅ Outcome
+By the end of this lab:
+
+Splunk Universal Forwarder was successfully installed and connected to Splunk Enterprise.
+
+Windows Event Logs and IIS Web Logs were ingested and indexed.
+
+Verified both log sources via Splunk Search queries:
+
+spl
+Copy code
+index="win_logs"
+index="web_logs" sourcetype="iis"
+🔍 Key Insights
+Component	Log Source	Index	Verification Query
+Windows Host	Event Logs (Application, Security, System)	win_logs	source="WinEventLog:*"
+Coffely Web Server	IIS Access Logs	web_logs	index="web_logs" sourcetype="iis"
+
+This lab demonstrated end-to-end log forwarding and ingestion across both system and web sources, a fundamental capability in SOC environments for threat monitoring and analysis.
+
+🔚 Summary
+After completing this setup:
+
+The Splunk environment is now receiving logs from multiple sources.
+
+Data normalization through source types (WinEventLog, IIS) allows seamless querying and dashboard creation.
+
+Future labs will extend this setup to include Linux syslogs, alert configuration, and log correlation.
+
 
