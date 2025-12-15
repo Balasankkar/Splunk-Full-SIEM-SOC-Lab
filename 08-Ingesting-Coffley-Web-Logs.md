@@ -65,13 +65,6 @@ Verified both log sources via Splunk Search queries:
 index="win_logs"
 index="web_logs" sourcetype="iis"
 
-🔍 Key Insights
-Component	Log Source	Index	Verification Query
-Windows Host	Event Logs (Application, Security, System)	win_logs	source="WinEventLog:*"
-Coffely Web Server	IIS Access Logs	web_logs	index="web_logs" sourcetype="iis"
-
-This lab demonstrated end-to-end log forwarding and ingestion across both system and web sources, a fundamental capability in SOC environments for threat monitoring and analysis.
-
 ## 🔚 Summary
 
 After completing this setup:
