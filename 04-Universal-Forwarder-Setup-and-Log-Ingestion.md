@@ -95,97 +95,95 @@ Now that the forwarder is running, the Splunk Enterprise instance must be config
 
 Navigate in Splunk Web to:
 
-nginx
-Copy code
 Settings → Forwarding and receiving → Configure receiving
+
+
 Then add a new receiving port — the default port is 9997.
 
 
 After saving, port 9997 becomes active and is ready to accept data from forwarders.
 
 ⚙️ Step 2 : Create a Custom Index
+
 Next, I created a dedicated index called Linux_host to store incoming logs.
 
-Path:
+Path: Settings → Indexes → New Index
 
-pgsql
-Copy code
-Settings → Indexes → New Index
-Name the new index:
+Name the new index: Linux_host
 
-nginx
-Copy code
-Linux_host
 Click Save to finalize.
 
+## ⚙️ Step 3: Configure the Forwarder Output
 
-
-⚙️ Step 5: Configure the Forwarder Output
 On the Linux host, I configured the Universal Forwarder to send data to the Splunk instance’s receiving port.
 
-Command executed from:
+In the host terminal, I went to the directory `/opt/splunkforwarder/bin` :
 
-bash
-Copy code
-/opt/splunkforwarder/bin
-bash
-Copy code
+```bash
+cd /opt/splunkforwarder/bin
+```
+I then added the forward-server using the command 
+
+```bash
 ./splunk add forward-server 10.48.142.158:9997
+```
 The command successfully added the forwarder target:
-
-nginx
-Copy code
+```bash
 Added forwarding to: 10.48.142.158:9997
-⚙️ Step 6: Specify Log Sources
+```
+## ⚙️ Step 4: Specify Log Sources
+
 Linux stores most system logs under /var/log/.
+
 For this lab, I chose to monitor syslog and send it to the Linux_host index.
 
-bash
-Copy code
+```bash
 ./splunk add monitor /var/log/syslog -index Linux_host
-Result:
+```
 
-nginx
-Copy code
+Result:
+```bash
 Added monitor of '/var/log/syslog'.
-⚙️ Step 7: Verify Configuration in inputs.conf
+```
+
+## ⚙️ Step 5: Verify Configuration in inputs.conf
+
 I checked the inputs.conf file to confirm the monitored log source and index mapping.
 
 Path:
 
-swift
-Copy code
+```bash
 /opt/splunkforwarder/etc/apps/search/local
+```
 Commands:
 
-bash
-Copy code
+```bash
 ls
+inputs.conf
 cat inputs.conf
+```
 Output:
-
-ini
-Copy code
+```bash
 [monitor:///var/log/syslog]
 disabled = false
 index = Linux_host
+```
 
 ⚙️ Step 8: Generate and Verify Log Data
 To simulate live log data, I used the logger utility to create a test message inside syslog:
 
-bash
-Copy code
+```bash
 logger "coffely-has-the-best-coffee-in-town"
+```
 Verified entry with:
 
-bash
-Copy code
+```bash
 tail -1 /var/log/syslog
+```
+
 Then confirmed it appeared in Splunk under the index Linux_host.
 
-
-
-✅ Outcome
+## ✅ Outcome
 Successfully installed and configured Splunk Universal Forwarder on Linux.
 
 Configured Splunk Enterprise to receive data on port 9997.
@@ -196,10 +194,5 @@ Monitored /var/log/syslog and verified log forwarding through the Splunk Search 
 
 Confirmed successful ingestion and visualization of test log data.
 
-🔚 Summary
-This lab established the foundation for log collection and centralization using Splunk.
-I now have a fully functional setup where Linux logs are continuously forwarded to Splunk for real-time monitoring and analysis.
-
-
-
-
+## 🔚 Summary
+This lab established the foundation for log collection and centralization using Splunk. I now have a fully functional setup where Linux logs are continuously forwarded to Splunk for real-time monitoring and analysis.
