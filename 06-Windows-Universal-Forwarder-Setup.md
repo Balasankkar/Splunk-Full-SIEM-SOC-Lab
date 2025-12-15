@@ -97,9 +97,13 @@ Settings → Forwarder Management
 The **Windows client (coffelylab)** appeared under the **Clients** tab, confirming a successful connection.
 
 Host Name: coffelylab
+
 IP Address: 127.0.0.1
+
 Machine Type: windows-x64
+
 Deployed Apps: 0
+
 Status: Phoned home a few seconds ago
 
 ![Forwarder Management Status](../images/siemlab/38-forwarder-management.png)
