@@ -18,7 +18,7 @@ To begin ingesting logs from the Windows machine:
 
 ---
 
-## ⚙️ Step 3: Select Forwarder Host
+## ⚙️ Step 2: Select Forwarder Host
 
 In the **Select Forwarders** window:
 
@@ -30,7 +30,7 @@ Then clicked **Next**.
 
 ---
 
-## ⚙️ Step 4: Choose Data Source — Local Event Logs
+## ⚙️ Step 3: Choose Data Source — Local Event Logs
 
 Next, I configured the source for log collection.
 
@@ -48,7 +48,7 @@ These represent the primary Windows event channels used for monitoring user acti
 
 ---
 
-## ⚙️ Step 5: Create an Index for Event Logs
+## ⚙️ Step 4: Create an Index for Event Logs
 
 To organize the incoming data, I created a new index:
 
@@ -60,7 +60,7 @@ This index will store all incoming events forwarded from the Windows endpoint.
 
 ---
 
-## ⚙️ Step 6: Review and Confirm Configuration
+## ⚙️ Step 5: Review and Confirm Configuration
 
 Before finalizing, I reviewed the configuration:
 
@@ -78,7 +78,7 @@ Once verified, I clicked **Submit** to activate the data input.
 
 ---
 
-## ⚙️ Step 7: Verify Ingestion via Splunk Search
+## ⚙️ Step 6: Verify Ingestion via Splunk Search
 
 After a few moments, the data began flowing into Splunk. To verify, I ran the following search query:
 
