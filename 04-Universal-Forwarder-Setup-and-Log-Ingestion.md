@@ -1,4 +1,4 @@
-# 🧩 Lab 4 — Setting Up Splunk Universal Forwarder (Linux)
+# 🧩 Lab 4.1 — Setting Up Splunk Universal Forwarder (Linux)
 
 In this lab, I set up the **Splunk Universal Forwarder** on the Linux server to forward logs to the main Splunk Enterprise instance.  
 The Universal Forwarder is a lightweight Splunk agent designed to collect and send data securely to an indexer or another forwarder.
@@ -7,14 +7,13 @@ The Universal Forwarder is a lightweight Splunk agent designed to collect and se
 
 ## ⚙️ Step 1: Understanding Splunk Forwarders
 
-Splunk provides two main types of forwarders:
+Splunk forwarders are responsible for sending data from endpoints to the Splunk indexer.  
+There are two main types of forwarders:
 
 - **Heavy Forwarder:** Used when log data needs to be filtered or parsed before forwarding.  
 - **Universal Forwarder:** A lightweight agent that forwards logs without local indexing or filtering.  
 
 For this task, I used the **Universal Forwarder** to ingest logs from the Linux machine into the Splunk instance.
-
-The latest version at the time of this setup was **9.0.3**.
 
 ---
 
@@ -22,8 +21,9 @@ The latest version at the time of this setup was **9.0.3**.
 
 The forwarder installer was already available in the lab environment under:
 
+```bash
 ~/Downloads/splunk/
-
+```
 
 Before starting the installation, I switched to root privileges:
 
@@ -31,51 +31,48 @@ Before starting the installation, I switched to root privileges:
 sudo su
 ```
 
-Then verified the files:
+Figure 1 — Overview of Splunk Universal Forwarder setup.
 
-ls
-
-Output included:
-
-splunk_installer.tgz
-splunkforwarder.tgz
-
-⚙️ Step 3: Install the Forwarder
+## ⚙️ Step 3: Install the Forwarder
 
 I extracted and installed the Universal Forwarder using the following command:
 
+```bash
 tar xvzf splunkforwarder.tgz
+```
 
 This created a new folder named splunkforwarder/, containing all the binaries and configuration files.
 
 Next, I moved the folder to the /opt/ directory:
 
+``` bash
 mv splunkforwarder /opt/
+```
 
-⚙️ Step 4: Start the Splunk Forwarder
+Figure 2 — Extracting and moving the forwarder directory.
+
+## ⚙️ Step 4: Start the Splunk Forwarder
 
 I navigated to the forwarder’s binary directory and started the service with the license acceptance flag:
 
+```bash
 cd /opt/splunkforwarder
 ./bin/splunk start --accept-license
 
+```
 As this was the first startup, I was prompted to create admin credentials:
 
+```bash
 Username: splunkadmin
 Password: ********
+```
 
 During initialization, the system detected that port 8089 was already in use and asked to use an alternate port.
 I set the management port to 8090.
 
-After configuration, Splunk confirmed that the Universal Forwarder was running successfully.
-
-Figure 1 — Overview of Splunk Universal Forwarder setup.
-
-
-Figure 2 — Extracting and moving the forwarder directory.
-
-
 Figure 3 — Creating credentials and running the forwarder on port 8090.
+
+After configuration, Splunk confirmed that the Universal Forwarder was running successfully.
 
 ✅ Outcome
 
@@ -85,66 +82,15 @@ Successfully created admin credentials for the forwarder instance.
 
 Verified the forwarder service is running on port 8090.
 
-Prepared for the next step — configuring the forwarder to send logs to the Splunk indexer.
+Splunk Forwarder is up and running but does not know what data to send and where. This is what we are going to configure next.
 
-# 🧩 Lab 4 — Setting Up Splunk Universal Forwarder and Ingesting Linux Logs
+## 🧩 Lab 4.2 — Ingesting Linux Logs
 
-In this lab, I set up the **Splunk Universal Forwarder** on a Linux machine and configured it to forward system logs into the main **Splunk Enterprise** instance for analysis.  
-This setup demonstrates end-to-end data ingestion — from log forwarding to visualization in Splunk.
-
----
-
-## ⚙️ Step 1: Understanding Splunk Forwarders
-
-Splunk forwarders are responsible for sending data from endpoints to the Splunk indexer.  
-There are two main types of forwarders:
-
-- **Heavy Forwarder** — Parses, filters, and modifies log data before sending it to Splunk.
-- **Universal Forwarder** — A lightweight agent that forwards raw logs without parsing or indexing.
-
-In this setup, I used the **Universal Forwarder (v9.0.3)** for Linux.
+In this task, I set up the **Splunk Universal Forwarder** on a Linux machine and configured it to forward system logs into the main **Splunk Enterprise** instance for analysis. This setup demonstrates end-to-end data ingestion — from log forwarding to visualization in Splunk.
 
 ---
 
-## ⚙️ Step 2: Locate and Install the Forwarder
-
-The forwarder installer was pre-downloaded in the following directory:
-
-~/Downloads/splunk/
-
-mathematica
-Copy code
-
-First, I verified the files:
-
-```bash
-ls
-
-```
-Output:
-
-Copy code
-splunk_installer.tgz
-splunkforwarder.tgz
-Then switched to root privileges and extracted the forwarder:
-
-bash
-Copy code
-sudo su
-tar xvzf splunkforwarder.tgz
-mv splunkforwarder /opt/
-Next, I started the forwarder and accepted the license:
-
-bash
-Copy code
-cd /opt/splunkforwarder
-./bin/splunk start --accept-license
-I created admin credentials and assigned a custom management port 8090, since port 8089 was already in use.
-
-
-
-
-⚙️ Step 3: Configure Splunk to Receive Data
+## ⚙️ Step 1: Configure Splunk to Receive Data
 Now that the forwarder is running, the Splunk Enterprise instance must be configured to receive incoming data.
 
 Navigate in Splunk Web to:
@@ -157,7 +103,7 @@ Then add a new receiving port — the default port is 9997.
 
 After saving, port 9997 becomes active and is ready to accept data from forwarders.
 
-⚙️ Step 4: Create a Custom Index
+⚙️ Step 2 : Create a Custom Index
 Next, I created a dedicated index called Linux_host to store incoming logs.
 
 Path:
