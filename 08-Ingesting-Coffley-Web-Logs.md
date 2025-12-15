@@ -10,38 +10,37 @@ The same Windows host also ran the Coffely web application, accessible at: http:
 
 This local site simulates an e-commerce platform used to generate web traffic for log collection.
 
-
-Step 4.1 — Add Data from Forwarder
+## ⚙️ Step 2: Add Data from Forwarder
 
 Navigated to:
 
 Settings → Add Data → Forward
 
-and selected Forward data from a Splunk forwarder.
+Selected Forward data from a Splunk forwarder.
 
 Selected WINDOWS coffelylab as the host and proceeded.
 
-Step 4.2 — Configure Source Path
+## ⚙️ Step 3: Configure Source Path
 
-Selected Files & Directories as the source input method.
+Select Files & Directories as the source input method.
 
 Specified the IIS log path:
 
-C:\inetpub\logs\LogFiles\W3SVC2
+`C:\inetpub\logs\LogFiles\W3SVC2`
 
-Step 4.3 — Set Source Type and Index
+## ⚙️ Step 4: Set Source Type and Index
 
 Under Input Settings, selected:
 
-Source Type: iis
+Source Type: **iis**
 
 This automatically applies Microsoft IIS log parsing during ingestion.
 
 Created a new index for web data:
 
-web_logs
+`web_logs`
 
-Step 4.4 — Verify Web Log Ingestion
+## ⚙️ Step 5: Verify Web Log Ingestion
 
 After setup, I accessed the Coffely site to generate logs (navigating through menus and placing mock orders).
 
@@ -49,7 +48,7 @@ Within 4–5 minutes, logs began populating in Splunk.
 
 Search query:
 
-index="web_logs" sourcetype="iis"
+`index="web_logs" sourcetype="iis"`
 
 Results included HTTP requests, response codes, timestamps, and client IPs — confirming successful ingestion.
 
