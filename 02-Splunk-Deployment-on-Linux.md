@@ -57,7 +57,7 @@ Using the admin credentials created earlier, I logged in successfully to the Spl
 Figure 3 — Accessing the Splunk web interface at http://coffely:8000
 .
 
-✅ Outcome
+## ✅ Outcome
 
 Successfully installed and configured Splunk Enterprise on the Linux server.
 
