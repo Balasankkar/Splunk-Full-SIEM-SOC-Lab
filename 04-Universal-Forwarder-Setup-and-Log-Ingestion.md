@@ -30,7 +30,7 @@ Before starting the installation, I switched to root privileges:
 ```bash
 sudo su
 ```
-
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/053a7372b34c59396f2e8295b6daa403ca6a7374/Screenshots/Figure1%2CL4.png)
 Figure 1 — Overview of Splunk Universal Forwarder setup.
 
 ## ⚙️ Step 3: Install the Forwarder
@@ -48,7 +48,7 @@ Next, I moved the folder to the /opt/ directory:
 ``` bash
 mv splunkforwarder /opt/
 ```
-
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/053a7372b34c59396f2e8295b6daa403ca6a7374/Screenshots/Figure2%2CL4.png)
 Figure 2 — Extracting and moving the forwarder directory.
 
 ## ⚙️ Step 4: Start the Splunk Forwarder
@@ -70,6 +70,7 @@ Password: ********
 During initialization, the system detected that port 8089 was already in use and asked to use an alternate port.
 I set the management port to 8090.
 
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/053a7372b34c59396f2e8295b6daa403ca6a7374/Screenshots/Figure3%2CL4.png)
 Figure 3 — Creating credentials and running the forwarder on port 8090.
 
 After configuration, Splunk confirmed that the Universal Forwarder was running successfully.
