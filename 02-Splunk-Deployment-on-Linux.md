@@ -25,6 +25,7 @@ tar xvzf splunk_installer.tgz
 
 This command unpacked the archive and created a new folder named `/splunk`, containing all required binaries and configuration files.
 
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/444e1b47ecea373fd489f3f9eb9463d543cd7883/Screenshots/Figure1%2CL2.png)
 Figure 1 — Splunk installer setup and extraction on Ubuntu server.
 
 Next, I moved the Splunk directory to the `/opt/` directory, which is a standard location for optional software installations on Linux:
@@ -49,6 +50,7 @@ Username: splunkadmin
 
 Password: custom secure password
 
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/444e1b47ecea373fd489f3f9eb9463d543cd7883/Screenshots/Figure2%2CL2.png)
 Figure 2 — Starting Splunk service and creating admin credentials.
 
 Splunk then initialized its web server and confirmed successful startup with the following message:
@@ -63,6 +65,7 @@ http://coffely:8000
 
 Using the admin credentials created earlier, I logged in successfully to the Splunk Enterprise dashboard, confirming that the deployment was successful and ready for further configuration.
 
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/444e1b47ecea373fd489f3f9eb9463d543cd7883/Screenshots/Figure3%2CL2.png)
 Figure 3 — Accessing the Splunk web interface at http://coffely:8000
 .
 
