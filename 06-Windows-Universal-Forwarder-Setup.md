@@ -10,11 +10,18 @@ Before installing the forwarder, I ensured that the **Splunk Enterprise** instan
 
 Settings → Forwarding and receiving → Configure receiving
 
-Then, click **Add new** and enter the receiving port:
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/ad0d4a1953af59ee0dd5e54fd9f1c9c153b9777e/Screenshots/Figure60.png)
 
-9997
+Then, click **Add new** 
+
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/ad0d4a1953af59ee0dd5e54fd9f1c9c153b9777e/Screenshots/Figure61.png)
+
+Enter the receiving port: **9997**
 
 Click **Save**.
+
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/ad0d4a1953af59ee0dd5e54fd9f1c9c153b9777e/Screenshots/FIgure63.png)
+
 
 ---
 
@@ -27,6 +34,8 @@ Windows 64-bit (.msi)
 
 The downloaded installer was placed in the `Downloads` folder.
 
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/ad0d4a1953af59ee0dd5e54fd9f1c9c153b9777e/Screenshots/Figure1%2CL5.png)
+
 ---
 
 ## ⚙️ Step 3: Begin Installation
@@ -38,7 +47,7 @@ Checked the **License Agreement** and select:
 Use this Universal Forwarder with:
 → An on-premises Splunk Enterprise instance
 
-![License Agreement & On-Premises Selection](../images/siemlab/32-forwarder-license.png)
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2fb41d1163016269e22e359acfd14502b79afd38/Screenshots/Figure64.png)
 
 ---
 
@@ -51,7 +60,7 @@ Password: ********
 
 This will be used to authenticate and manage the forwarder connection with the Splunk Indexer.
 
-![Forwarder Admin Setup](../images/siemlab/35-forwarder-admin.png)
+![Forwarder Admin Setup](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2fb41d1163016269e22e359acfd14502b79afd38/Screenshots/Figure65.png)
 
 ---
 
@@ -62,8 +71,6 @@ This allows centralized control of multiple forwarders from the Splunk instance.
 
 Hostname or IP: 127.0.0.1
 Port: 8089
-
-![Deployment Server Configuration](../images/siemlab/34-deployment-server.png)
 
 ---
 
@@ -76,15 +83,12 @@ Port: 9997
 
 This ensures that data is sent to the same machine running Splunk Enterprise (for lab setup).
 
-![Receiving Indexer Configuration](../images/siemlab/33-receiving-indexer.png)
-
 ## ⚙️ Step 7: Install and Complete Setup
 
 The installation process took 3–5 minutes.  
 The wizard displayed progress for copying and installing files.
 
-![Installation Progress](../images/siemlab/36-forwarder-progress.png)
-![Installation Completion](../images/siemlab/37-forwarder-complete.png)
+![Installation Completion](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2fb41d1163016269e22e359acfd14502b79afd38/Screenshots/Figure66.png)
 
 ---
 
@@ -93,6 +97,8 @@ The wizard displayed progress for copying and installing files.
 Once the forwarder installation was complete, I navigated to:
 
 Settings → Forwarder Management
+
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2fb41d1163016269e22e359acfd14502b79afd38/Screenshots/Figure67.png)
 
 The **Windows client (coffelylab)** appeared under the **Clients** tab, confirming a successful connection.
 
@@ -106,11 +112,11 @@ Deployed Apps: 0
 
 Status: Phoned home a few seconds ago
 
-![Forwarder Management Status](../images/siemlab/38-forwarder-management.png)
+![Forwarder Management Status](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2fb41d1163016269e22e359acfd14502b79afd38/Screenshots/Figure68.png)
 
 ---
 
-✅ Outcome
+## ✅ Outcome
 Installed and configured Splunk Universal Forwarder on Windows.
 
 Verified successful communication with Splunk Enterprise on port 9997.
