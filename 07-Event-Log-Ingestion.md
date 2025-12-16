@@ -9,12 +9,10 @@ In this lab, I completed the configuration of the **Splunk Universal Forwarder**
 To begin ingesting logs from the Windows machine:
 
 1. Navigate to **Settings → Add Data**
-
-![Add Data Menu in Splunk](../images/siemlab/43-add-data-menu.png)
    
 2. Select the **Forward** option to pull data from the connected Splunk Forwarder.
 
-![Select Forward Option](../images/siemlab/44-forward-data.png)
+![Select Forward Option](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2d2167ab95f84a5e72725de239cf3173f68fec67/Screenshots/Figure70.png)
 
 ---
 
@@ -27,6 +25,8 @@ In the **Select Forwarders** window:
 - I moved it to **Selected host(s)** and created a **New Server Class Name**: `coffely_lab`
 
 Then clicked **Next**.
+
+![Image Alt](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2d2167ab95f84a5e72725de239cf3173f68fec67/Screenshots/Figure71.png)
 
 ---
 
@@ -44,7 +44,7 @@ Local Event Logs — Collect event logs from this machine.
 
 These represent the primary Windows event channels used for monitoring user activity, system alerts, and security events.
 
-![Select Local Event Logs](../images/siemlab/46-local-eventlogs.png)
+![Select Local Event Logs](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2d2167ab95f84a5e72725de239cf3173f68fec67/Screenshots/Figure72.png)
 
 ---
 
@@ -56,7 +56,7 @@ To organize the incoming data, I created a new index:
 
 This index will store all incoming events forwarded from the Windows endpoint.
 
-![Create Win_Logs Index](../images/siemlab/47-create-index.png)
+![Create Win_Logs Index](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2d2167ab95f84a5e72725de239cf3173f68fec67/Screenshots/Figure73.png)
 
 ---
 
@@ -74,8 +74,7 @@ Before finalizing, I reviewed the configuration:
 
 Once verified, I clicked **Submit** to activate the data input.
 
-![Configuration Review Screen](../images/siemlab/48-review-settings.png)
-
+![Configuration Review Screen](https://github.com/Balasankkar/Splunk-Full-SIEM-SOC-Lab/blob/2d2167ab95f84a5e72725de239cf3173f68fec67/Screenshots/Figure74.png)
 ---
 
 ## ⚙️ Step 6: Verify Ingestion via Splunk Search
